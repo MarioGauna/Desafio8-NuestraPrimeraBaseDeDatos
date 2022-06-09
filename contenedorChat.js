@@ -1,8 +1,8 @@
 const knex = require('knex');
 
 class contenedorChat {
-    constructor(chatOP,table) {
-        this.knex = knex(chatOP);
+    constructor(options,table) {
+        this.knex = knex(options);
         this.table = table;
     }
     async save(newDato){

@@ -5,12 +5,11 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = new ioServer(httpServer);
 
-const {prodOP} = require('./configProdDB')
-const {chatOP} = require('./configChatDB.js')
+const {options} = require('./configDB')
 const contenedorProd = require('./contenedorProd.js');
 const contenedorChat = require('./contenedorChat.js');
-const content = new contenedorProd(prodOP,'productos');
-const chat = new contenedorChat(chatOP,'usuarios')
+const content = new contenedorProd(options.mariaDB,'productos');
+const chat = new contenedorChat(options.sqlite,'usuarios')
 
 app.use(express.static(__dirname +"/public"))
 app.use(express.json());

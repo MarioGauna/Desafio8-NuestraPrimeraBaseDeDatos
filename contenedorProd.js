@@ -1,8 +1,8 @@
 const knex = require('knex');
 
 class contenedorProd {
-    constructor(prodOP,table) {
-        this.knex = knex(prodOP);
+    constructor(options,table) {
+        this.knex = knex(options);
         this.table = table;
     }
     async save(newDato){
