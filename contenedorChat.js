@@ -14,7 +14,7 @@ class contenedorChat {
                     const result = JSON.parse(res)
                 return result
             } else {
-                await this.knex.schema.createTableIfNotExists('usuarios',table=>{
+                await this.knex.schema.createTable('usuarios',table=>{
                     table.increments('id').primary().unique()
                     table.string('autor',50).notNullable()
                     table.string('hora').notNullable()

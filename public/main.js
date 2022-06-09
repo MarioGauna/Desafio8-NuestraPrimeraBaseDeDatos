@@ -38,16 +38,20 @@ btnGuardar.addEventListener("click",(event)=>{
 })
 
 socket.on('messages',(messages)=>{
-    divChat.innerHTML=messages.map(message=>{
-        return(
-            `<div>
-            <span style="color:blue; font-weight: bold;">${message.autor}</span>
-            <span style="color:brown">${message.hora}</span>
-            <span style="color:green; font-style: italic;">${message.texto}</span>
-            </div>
-            `
-        )
-    }).join(" ")
+    if (messages == null){
+        divChat.innerHTML= " ";
+    } else {
+        divChat.innerHTML=messages.map(message=>{
+            return(
+                `<div>
+                <span style="color:blue; font-weight: bold;">${message.autor}</span>
+                <span style="color:brown">${message.hora}</span>
+                <span style="color:green; font-style: italic;">${message.texto}</span>
+                </div>
+                `
+            )
+        }).join(" ")
+    }
 })
 
 socket.on('newMessages',(messages)=>{
@@ -65,15 +69,19 @@ socket.on('newMessages',(messages)=>{
 
 socket.on('newProduct',(products)=>{
     body.innerHTML = " ";
-    body.innerHTML = products.map(products =>{
-        return(
-            `<tr>
-                <td class="table-info">${products.id}</td>
-                <td class="table-info">${products.title}</td>
-                <td class="table-info">${products.price}</td>
-                <td class="table-info"><img src=${products.image} alt="No image" width="20px"/></td>
-            </tr>
-            `
-        )
-    }).join(" ")
+    if (products == null){
+        body.innerHTML = " ";
+    } else {
+        body.innerHTML = products.map(products =>{
+            return(
+                `<tr>
+                    <td class="table-info">${products.id}</td>
+                    <td class="table-info">${products.title}</td>
+                    <td class="table-info">${products.price}</td>
+                    <td class="table-info"><img src=${products.image} alt="No image" width="20px"/></td>
+                </tr>
+                `
+            )
+        }).join(" ")
+    }
 })
